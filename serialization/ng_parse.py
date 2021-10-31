@@ -13,6 +13,10 @@ LEFT_BRACE = "{"
 RIGHT_BRACE = "}"
 
 
+def equals(a, b):
+    return a == b
+
+
 class NgParse:
     def __init__(self, config):
         self.__config = config
@@ -24,32 +28,33 @@ class NgParse:
         result = []
         tempLine = []
         braceStack = []
+        braceStatucs = False
 
         for item in config:
             tempLine.append(item)
 
+            # 如果是左括号就压入栈
             if item == LEFT_BRACE:
                 braceStack.append(LEFT_BRACE)
+                braceStatucs = True
 
+            # 如果是右括号
+            # 如果栈内上一个刚好是左括号 就从栈中弹出一个，匹配正确 {}
+            # 如果不是，就将右括号也压入栈内
             if item == RIGHT_BRACE:
                 if braceStack[-1] == LEFT_BRACE:
                     braceStack.pop()
                 else:
                     braceStack.append(RIGHT_BRACE)
 
-                if len(braceStack) == 0:
-                    result.append("".join(tempLine))
-                    tempLine = []
+            # 匹配 {} 模式分块
+            if len(braceStack) == 0 and braceStatucs:
+                result.append("".join(tempLine))
+                tempLine = []
+                braceStatucs = False
 
-            if len(braceStack) >= 2 and braceStack[-1] == RIGHT_BRACE and braceStack[-2] == LEFT_BRACE:
-                braceStack.pop()
-                braceStack.pop()
-                if len(braceStack) == 0:
-                    result.append("".join(tempLine))
-                    tempLine = []
-                # 导出最终数据对象
-
-            if (item == SEMICOLON and len(braceStack) == 0):
+            # 匹配 ; 模式分块
+            if item == SEMICOLON and braceStatucs == False:
                 result.append("".join(tempLine))
                 tempLine = []
 
