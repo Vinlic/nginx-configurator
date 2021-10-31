@@ -2,7 +2,7 @@
 # @author winily
 # @date 2021-10-29
 # Copyright©️ C++精修庙. All Rights Reserved
-from ng_events_parse import NgEventsParse
+from serialization.ng_events_parse import NgEventsParse
 
 
 def create_parse_modules():

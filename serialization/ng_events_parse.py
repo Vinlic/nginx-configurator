@@ -4,7 +4,7 @@
 # Copyright©️ C++精修庙. All Rights Reserved
 # 解析 events 配置
 
-from ng_parse_module_base import NgParseModuleBase
+from serialization.ng_parse_module_base import NgParseModuleBase
 
 
 class NgEventsParse(NgParseModuleBase):
