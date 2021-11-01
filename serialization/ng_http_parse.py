@@ -5,6 +5,7 @@
 # 解析 http 配置
 
 from serialization.ng_parse_module_base import NgParseModuleBase
+from serialization.utils import *
 
 
 class NgHttpParse(NgParseModuleBase):
@@ -12,6 +13,13 @@ class NgHttpParse(NgParseModuleBase):
         return key == 'http'
 
     def to_data(self, config):
-        print("parse data http")
-        self.match_and_parse("events", config)
-        return config
+        config = remove_external_brace(config)
+        data = {}
+        for item in divide_config(config):
+            item_key_value = parse_key_value(item)
+            key = item_key_value['key']
+            value = item_key_value['value']
+            if is_brace(value):
+                value = self.to_data(value)
+            data[key] = value
+        return data

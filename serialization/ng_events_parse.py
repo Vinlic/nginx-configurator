@@ -5,6 +5,7 @@
 # 解析 events 配置
 
 from serialization.ng_parse_module_base import NgParseModuleBase
+from serialization.utils import *
 
 
 class NgEventsParse(NgParseModuleBase):
@@ -12,5 +13,11 @@ class NgEventsParse(NgParseModuleBase):
         return key == 'events'
 
     def to_data(self, config):
-        print("parse data event")
-        return config
+        config = remove_external_brace(config)
+        data = {}
+        for item in divide_config(config):
+            item_key_value = parse_key_value(item)
+            key = item_key_value['key']
+            value = item_key_value['value']
+            data[key] = value
+        return data

@@ -8,7 +8,6 @@ from serialization.ng_parse_module_base import NgParseModuleBase
 # 利用反射获取 NgParseModuleBase 的所有子类，并且实例化
 # NgParseModuleBase 的子类要被装载到当前目录的 __init__.py 中
 
-
 def create_parse_modules():
     module_lits = NgParseModuleBase.__subclasses__()
     serialization_model = __import__("serialization")
