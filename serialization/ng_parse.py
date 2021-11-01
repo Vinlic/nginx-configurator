@@ -20,7 +20,7 @@ def equals(a, b):
 class NgParse:
     def __init__(self, config):
         self.__config = config
-        self.__parseModules = create_parse_modules()
+        self.__match_and_parse = create_parse_modules()
         pass
 
     def __divide(self, config):
@@ -62,6 +62,8 @@ class NgParse:
 
     def to_data(self):
         divide_config = self.__divide(self.__config)
-        for item in divide_config:
-            print("-------------------")
-            print(item)
+        # self.__match_and_parse("http", divide_config[2])
+        # for item in divide_config:
+        #     print("-------------------")
+        #     print(item)
+        return "".join(divide_config)
