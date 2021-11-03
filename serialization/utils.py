@@ -8,8 +8,6 @@
 from serialization.public_symbol import *
 
 # 分切配置块 获取到 {} 整段配置或者 ；分割的每行配置
-
-
 def divide_config(config):
 
     result = []
@@ -73,5 +71,5 @@ def is_brace(value):
 def remove_external_brace(value):
     if is_brace(value):
         value = value[1: -1].strip()
-        
+
     return value

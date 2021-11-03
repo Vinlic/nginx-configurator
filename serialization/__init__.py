@@ -5,3 +5,5 @@
 
 from serialization.ng_events_parse import NgEventsParse
 from serialization.ng_http_parse import NgHttpParse
+from serialization.ng_server_parse import NgServerParse
+from serialization.ng_location_parse import NgLocationParse

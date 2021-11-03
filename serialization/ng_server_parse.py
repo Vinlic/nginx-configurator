@@ -2,15 +2,15 @@
 # @author winily
 # @date 2021-10-29
 # Copyright©️ C++精修庙. All Rights Reserved
-# 解析 http 配置
+# 解析 server 配置
 
 from serialization.ng_parse_module_base import NgParseModuleBase
 from serialization.utils import *
 
 
-class NgHttpParse(NgParseModuleBase):
+class NgServerParse(NgParseModuleBase):
     def match_key(self, key):
-        return key == 'http'
+        return key == 'server'
 
     # def to_data(self, config):
     #     config = remove_external_brace(config)
@@ -19,7 +19,5 @@ class NgHttpParse(NgParseModuleBase):
     #         item_key_value = parse_key_value(item)
     #         key = item_key_value['key']
     #         value = item_key_value['value']
-    #         if is_brace(value):
-    #             value = self.to_data(value)
     #         data[key] = value
     #     return data

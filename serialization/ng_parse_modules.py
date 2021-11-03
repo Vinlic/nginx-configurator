@@ -18,7 +18,7 @@ def create_parse_modules():
         for module in parse_modules:
             if module.match_key(key):
                 return module.to_data(config)
-        return config
+        return False
 
     for module in module_lits:
         subclass = getattr(serialization_model, module.__name__)

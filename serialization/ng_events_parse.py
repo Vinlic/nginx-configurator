@@ -12,12 +12,6 @@ class NgEventsParse(NgParseModuleBase):
     def match_key(self, key):
         return key == 'events'
 
-    def to_data(self, config):
-        config = remove_external_brace(config)
-        data = {}
-        for item in divide_config(config):
-            item_key_value = parse_key_value(item)
-            key = item_key_value['key']
-            value = item_key_value['value']
-            data[key] = value
-        return data
+    # def to_data(self, config):
+    #     config = remove_external_brace(config)
+    #     return self.basic_parse(divide_config(config))
